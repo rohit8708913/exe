@@ -27,7 +27,7 @@ CHANNEL_ID2 = int(os.environ.get("CHANNEL_ID2", "-1002201572719"))
 OWNER_ID = int(os.environ.get("OWNER_ID", "7328629001"))
 
 # Port
-PORT = os.environ.get("PORT", "8098")
+PORT = os.environ.get("PORT", "8018")
 
 DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://punseu:Oyo1IczTUf4on5uD@cluster345.wmk2j.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = os.environ.get("DATABASE_NAME", "FilesStoringBot")
