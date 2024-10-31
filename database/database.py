@@ -4,10 +4,11 @@
 
 
 import pymongo, os
-from config import DB_URI, DB_NAME
+from config import DB_URI, DB_URI2, DB_NAME
 
 
 dbclient = pymongo.MongoClient(DB_URI)
+dbclient2 = pymongo.MongoClient(DB_URI2)
 database = dbclient[DB_NAME]
 
 
