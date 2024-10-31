@@ -4,12 +4,13 @@
 
 
 import pymongo, os
-from config import DB_URI, DB_URI2, DB_NAME
+from config import DB_URI, DB_URI2, DB_NAME, DB_NAME2
 
 
 dbclient = pymongo.MongoClient(DB_URI)
 dbclient2 = pymongo.MongoClient(DB_URI2)
 database = dbclient[DB_NAME]
+database2 = dbclient2[DB_NAME2]
 
 
 user_data = database['users']
