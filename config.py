@@ -32,6 +32,9 @@ PORT = os.environ.get("PORT", "8018")
 DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://punseu:Oyo1IczTUf4on5uD@cluster345.wmk2j.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = os.environ.get("DATABASE_NAME", "FilesStoringBot")
 
+DB_URI2 = os.environ.get("DATABASE_URL", "mongodb+srv://munkog:6mOVQ1GqWD5P30XE@cluster245.e2vmr.mongodb.net/?retryWrites=true&w=majority")
+DB_NAME2 = os.environ.get("DATABASE_NAME", "FilesStBot")
+
 #force sub channel id, if you want enable force sub
 FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1002215102799"))
 FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCESUB_CHANNEL2", "-1002001392051"))
