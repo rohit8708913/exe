@@ -75,14 +75,33 @@ async def get_messages(client, message_ids):
 
 async def get_message_id(client, message):
     """Extract message ID from forwarded message or a link."""
+    channel_id = None  # Initialize channel_id
     if message.forward_from_chat:
         if message.forward_from_chat.id == client.db_channel.id:
-            return message.forward_from_message_id
+            channel_id = client.db_channel
+            return message.forward_from_message_id, channel_id
         elif message.forward_from_chat.id == client.db_channel2.id:
-            return message.forward_from_message_id
-        return 0
+            channel_id = client.db_channel2
+            return message.forward_from_message_id, channel_id
+        return 0, None  # Return 0 and None if not from any channel
     elif message.forward_sender_name or not message.text:
-        return 0
+        return 0, None
+
+    pattern = r"https://t.me/(?:c/)?(.*)/(\d+)"
+    matches = re.match(pattern, message.text)
+    if matches:
+        channel_id = matches.group(1)
+        msg_id = int(matches.group(2))
+        if channel_id.isdigit():
+            if f"-100{channel_id}" == str(client.db_channel.id):
+                return msg_id, client.db_channel
+            elif f"-100{channel_id}" == str(client.db_channel2.id):
+                return msg_id, client.db_channel2
+        elif channel_id == client.db_channel.username:
+            return msg_id, client.db_channel
+        elif channel_id == client.db_channel2.username:
+            return msg_id, client.db_channel2
+    return 0, None  # Ensure to return a tuple
 
     pattern = r"https://t.me/(?:c/)?(.*)/(\d+)"
     matches = re.match(pattern, message.text)
