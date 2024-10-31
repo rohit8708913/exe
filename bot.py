@@ -72,6 +72,15 @@ class Bot(Client):
             self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel, and Double check the CHANNEL_ID Value, Current Value {CHANNEL_ID}")
             self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/weebs_support for support")
             sys.exit()
+        try:
+            db_channel = await self.get_chat(CHANNEL_ID2)
+            self.db_channel = db_channel2
+            test = await self.send_message(chat_id = db_channel2.id, text = "Test Message")
+            await test.delete()
+        except Exception as e:
+            self.LOGGER(__name__).warning(e)
+            self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel, and Double check the CHANNEL_ID Value, Current Value {CHANNEL_ID2}")
+            self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/weebs_support for support")
 
         self.set_parse_mode(ParseMode.HTML)
         self.LOGGER(__name__).info(f"Bot Running..!\n\nCreated by \nhttps://t.me/weebs_support")
